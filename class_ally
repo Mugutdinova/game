@@ -1,0 +1,30 @@
+class c_ally extends c0{
+    f1(){
+        this.вперед(7);
+        // Проверка столкновений с объектами bonus
+        for (let key in obj) {
+            if (obj[key] instanceof c_bonus) {
+                if (this.isColliding(obj[key])) {
+                    this.handleCollision(obj[key]);
+                }
+            }
+        }
+    }
+
+    isColliding(other) {
+        return (
+            this.x < other.x + other.w &&
+            this.x + this.w > other.x &&
+            this.y < other.y + other.h &&
+            this.y + this.h > other.y
+        );
+    }
+
+    handleCollision(other) {
+        ball++; // Увеличиваем счет
+        schet.innerHTML = ball;
+        other.удалить_объект();
+        this.удалить_объект();
+        checkGameOver();
+    }
+}
