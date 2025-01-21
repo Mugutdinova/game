@@ -1,0 +1,71 @@
+body{
+    background: url(image/fon.jpg) no-repeat center/cover fixed;
+    user-select: none;
+}
+#preloader{
+    left: 0px;
+    top: 0px;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    width: 80%;
+    height: 100%;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0px;
+}
+#zadanie{
+    position: absolute;
+    margin: 10% auto;
+    left: 50%;
+    color: rgb(110, 14, 200);
+}
+.personaj{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+}
+#schet{
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    background-image: url(image/schet.png);
+    background-size: 100%;
+    width: 60px;
+    font-size: 20pt;
+}
+.weapon{
+    background: url(image/w.png) no-repeat center/cover;
+}
+.opponent{
+    background: url(image/o.png) no-repeat center/cover;
+}
+.ally{
+    background: url(image/a.png) no-repeat center/cover;
+}
+.bang1{
+    background: url(image/b1.png) no-repeat center/cover;
+}
+.bang2{
+    background: url(image/b2.png) no-repeat center/cover;
+}
+.bonusbum{
+    background: url(image/bonusbum.png) no-repeat center/cover;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .personaj {
+        font-size: large; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+
+    #schet {
+        width: 40px; /* Уменьшаем размер счетчика */
+        font-size: 14pt;
+    }
+
+    #preloader {
+        font-size: 14px; /* Уменьшаем размер текста на прелоадере */
+    }
+}
