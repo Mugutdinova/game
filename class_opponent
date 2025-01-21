@@ -1,0 +1,79 @@
+class c_opponent extends c0{
+    constructor(count, время) {
+        super(count, время);
+        this.amplitude = Math.random() * 50 + 50; // Амплитуда синусоиды (случайное значение от 50 до 100)
+        this.frequency = Math.random() * 0.02 + 0.01; // Частота синусоиды (случайное значение от 0.01 до 0.03)
+        this.phase = Math.random() * Math.PI * 2; // Фаза синусоиды (случайное значение от 0 до 2π)
+        this.speed = 0.5;
+    }
+    f1(){
+         // Движение вниз по синусоиде
+         this.y += this.speed; // Постоянное движение вниз
+         this.x += Math.sin(this.y * this.frequency + this.phase) * this.amplitude * 0.03; // Синусоидальное смещение по X
+
+         // Проверка границ экрана
+         this.checkBounds();
+ 
+         // Проверка столкновений
+         this.checkCollisions();
+ 
+
+        // Проверка, если объект достиг нижней границы экрана
+        if (this.picture.className.indexOf('false_obj') >= 0) {
+            if (this.y >= window.innerHeight) {
+                console.log('Ваш результат: ' + ball);
+            }
+        }
+    }
+
+    checkBounds() {
+        // Проверка левой границы экрана
+        if (this.x < 0) {
+            this.x = 0;
+        }
+        // Проверка правой границы экрана
+        if (this.x + this.w > window.innerWidth) {
+            this.x = window.innerWidth - this.w;
+        }
+        // Проверка нижней границы экрана
+        if (this.y + this.h > window.innerHeight) {
+            this.y = window.innerHeight - this.h;
+        }
+    }
+
+    checkCollisions() {
+        for (let key in obj) {
+            if (obj[key] !== this && obj[key] instanceof c_opponent) {
+                if (this.isColliding(obj[key])) {
+                    this.handleCollision(obj[key]);
+                }
+            }
+        }
+    }
+    isColliding(other) {
+        // Проверка пересечения двух объектов
+        return (
+            this.x < other.x + other.w &&
+            this.x + this.w > other.x &&
+            this.y < other.y + other.h &&
+            this.y + this.h > other.y
+        );
+    }
+
+    handleCollision(other) {
+        // Логика отталкивания
+        const overlapX = (this.x + this.w / 2) - (other.x + other.w / 2);
+        const overlapY = (this.y + this.h / 2) - (other.y + other.h / 2);
+
+        // Отталкивание по горизонтали или вертикали
+        if (Math.abs(overlapX) > Math.abs(overlapY)) {
+            // Горизонтальное отталкивание
+            this.x += overlapX > 0 ? 1 : -1;
+            other.x += overlapX > 0 ? -1 : 1;
+        } else {
+            // Вертикальное отталкивание
+            this.y += overlapY > 0 ? 1 : -1;
+            other.y += overlapY > 0 ? -1 : 1;
+        }
+    }
+} 
